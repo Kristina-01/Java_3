@@ -4,9 +4,7 @@ import java.util.Random;
 
 public class Equipment {
 
-
-
-   int damage;
+   int damage=10;
 
 
 }

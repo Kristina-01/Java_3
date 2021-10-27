@@ -3,91 +3,43 @@ public class Program {
     public static void main(String[] args){
         //GameLogic.Pole();
 
-        int num = 5;
-        var arr = new char [num][];
-        int x1=1; int y1 =0;
-        int x2=4; int y2=4;
-        for(int i =0;i<arr.length;++i){
-            arr [i] = new char[num];
-            for(int j=0; j<arr.length;j++){
-                if(i == x1 && j == y1){
-                arr[i][j] = '@';
-                } else if (i == x2 && j == y2)
-                {
-                    arr[i][j] = 'P';
-                }
-                else
-                    arr[i][j] = ' ';
 
-            }
-        }
-        Print(arr);
-       int i = 15;
-/*
-        String s = "вниз";//GameLogic.direction();
-        Posion p = GameLogic.moving(s, x1, y1, arr);
-        System.out.println(s);
-        Print(arr);
+        World w = new World(4);
+        int x = 1; int y = 0;
+        w.SetPlayer(x, y, '@');
+        w.SetPlayer(3, 1, 'A');
 
-        String s1 = "вниз";//GameLogic.direction();
-        Posion p1 = GameLogic.moving(s1, p.x, p.y, arr);
-        System.out.println(s);
-        Print(arr);
-
- */
-
+        w.Print();
+        Player pl = new Player();
         Posion p = null;
-       while (i > 0) {
-           String s = GameLogic.direction();
+        Enemy en = new Enemy();
 
-           int _x = p == null ? x1 : p.x;
-           int _y = p == null ? y1 : p.y;
-
-           System.out.println(s + " " + _x + " " + _y);
-
-           p = GameLogic.moving(s, _x, _y, arr);
-           /*
-           if(p != null) // если сделали шаг то ищем врага
-           {
-              p = GameLogic.searchfortheenemy(arr, p.x, p.y);
-               if(p != null) // нашли врага
-              {
-//
-              } // не нашли
-          }
-
-            */
-           System.out.println();
-           System.out.println();
-
-           Print(arr);
-
-           --i;
-       }
+        int i = 0;
 
 
 
-
-
-    }
-
-
-
-    static  void Print(char[][] arr)
-    {
-        for (int i = 0; i < arr.length; ++i)
+        // while (i < 4)
         {
+             ++i;
+             int _x = p != null ? p.x : x;
+             int _y = p != null ? p.y : y;
 
-            System.out.println();
+            Cretureconroller cretureconroller1 = new Cretureconroller(w,pl,_x,_y, en);
+           // Cretureconroller2 cretureconroller2 = new Cretureconroller2(w,en,_x,_y);
+            Thread th1 = new Thread(cretureconroller1);
+            //Thread th2 = new Thread(cretureconroller2);
 
-            for (int j = 0; j < arr[i].length; ++j)
-            {
-                System.out.print(" | ");
-                System.out.print(arr[j][i]);
-            }
-            System.out.print(" | ");
-
+             System.out.println();
+             System.out.println();
+             // w.Print();
         }
+
+
+
     }
+
+
+
+
 
 }
