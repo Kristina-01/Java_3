@@ -1,16 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Creature {
     String name;
+    Random ran = new Random();
     public int  health = 100;
-    public int equipment=20;
+    public int equipment=ran.nextInt(50);
     ArrayList<Weapon> weapons = new ArrayList<>();
     public boolean expects = true;  //ожидает
-    public int baseAP=30;
+    public int baseAP=ran.nextInt(30);
     public boolean alive= true;
-    ArrayList<Equipment> equipments = new ArrayList<>();
-
+    ArrayList<Equipment> equipments = new ArrayList<>(10);
+    public int x;
+    public int y;
 
 
     public int getBaseAP() {return baseAP;}

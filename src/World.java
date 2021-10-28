@@ -30,6 +30,8 @@ public class World {
 
     public void Print()
     {
+        System.out.println();
+        System.out.println();
         for (int i = 0; i < worldArr.length; ++i)
         {
 
@@ -137,6 +139,7 @@ public class World {
         {
             if(worldArr[_x][_y]!=' ' ){
                 p.x =_x;p.y =_y;
+                p.name =   Character.toString(worldArr[_x][_y]);//String.valueOf(worldArr[_x][_y]);
                 return p;
             }
         }
@@ -144,6 +147,7 @@ public class World {
          if (IsCheck( x,_y)) {
             if(worldArr[x][_y]!= ' ' ){
                 p.x = x; p.y = _y;
+                p.name = Character.toString( worldArr[x][_y]);
                 return p;
             }
         }
@@ -153,6 +157,7 @@ public class World {
         if(IsCheck( _x,_y)){
             if(worldArr[_x][_y]!=' '){
                 p.x =_x;p.y =_y;
+                p.name = Character.toString(worldArr[_x][_y]);
                 return p;
             }
         }
@@ -161,6 +166,7 @@ public class World {
         if(IsCheck( _x,y)){
             if(worldArr[_x][y]!=' '){
                 p.x=_x;p.y=y;
+                p.name = Character.toString(worldArr[_x][y]);
                 return  p;
             }
         }
@@ -169,6 +175,7 @@ public class World {
         if(IsCheck( _x,_y)){
             if(worldArr[_x][_y]!=' '){
                 p.x=_x;p.y=_y;
+                p.name = Character.toString(worldArr[_x][_y]);
                 return  p;
             }
         }
@@ -176,6 +183,7 @@ public class World {
         if(IsCheck( x,_y)){
             if(worldArr[x][_y]!=' '){
                 p.x=x;p.y=_y;
+                p.name = Character.toString(worldArr[x][_y]);
                 return  p;
             }
         }
@@ -184,6 +192,7 @@ public class World {
         if(IsCheck( _x,y)){
             if(worldArr[_x][y]!=' '){
                 p.x=_x;p.y=y;
+                p.name = Character.toString(worldArr[_x][y]);
                 return  p;
             }
         }
@@ -192,6 +201,7 @@ public class World {
         if(IsCheck( _x,_y)){
             if(worldArr[_x][_y]!=' '){
                 p.x=_x;p.y=_y;
+                p.name = Character.toString(worldArr[_x][_y]);
                 return  p;
             }
         }

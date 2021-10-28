@@ -12,9 +12,10 @@ public class Cretureconroller implements  Runnable {
     Player pl;
     int x;
     int y;
+    ArrayList<Creature> list;
 
 
-    public Cretureconroller(World w, Player pl, int x, int y, Enemy en) {
+    public Cretureconroller(World w, Player pl, int x, int y, Enemy en, ArrayList<Creature> list) {
         t = new Thread(this, "Дополнительный поток");
         t.start();
         this.w = w;
@@ -22,31 +23,46 @@ public class Cretureconroller implements  Runnable {
         this.x = x;
         this.y = y;
         this.en = en;
+        this.list = list;
     }
 
     @Override
     public void run() {
         int i = 0;
-        while (i < 4) {
+        boolean isStep = true;
+        while (isStep) {
 
             int _x =  pos == null ? x : pos.x;
             int _y = pos == null ? y : pos.y;
-            if (w.searchfortheenemy(_x, _y) == null && pl.alive) {
+            var em = w.searchfortheenemy(_x, _y);
+            if (em == null && pl.alive) {
                 System.out.println("Соперник не найден");
                 pos = w.Step(_x, _y);
                 w.Print();
             } else {
-                while (en.health!=0 && pl.health!=0){
-                    GameLogic.damageforEn(en, pl);
+
+                Creature pm = null;
+                Creature cl = null;
+                for(int k = 0 ; k < list.size(); ++k)
+                {
+                    if(list.get(k).name.equals(em.name))
+                    {
+                        pm = list.get(k);
+                        break;
+                    }
                 }
-                int delx = w.searchfortheenemy(_x,_y).x;
-                int dely = w.searchfortheenemy(_x,_y).y;
-                System.out.println(delx);
-                System.out.println(dely);
 
-                w.delcr(delx, dely);
+                if(pm != null) {
+                    cl =  GameLogic.battle2(pm, pl);
+                }
 
-
+                if(pm.health <= 0)
+                w.delcr(em.x, em.y);
+                else if(pl.health <= 0)
+                    w.delcr(pos.x, pos.y);
+                w.Print();
+                System.out.println("END " + cl.name);
+                isStep = false;
             }
 
          ++i;
